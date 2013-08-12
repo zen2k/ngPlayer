@@ -1,0 +1,34 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <script src="http://code.angularjs.org/1.0.6/angular.min.js"></script>
+    <script>
+    function InvoiceCntl($scope){
+      $scope.cost = 20;
+      $scope.qty = 5;
+    }
+    it('should show of angular binding', function() {
+    expect(binding('qty * cost')).toEqual('$19.95');
+    input('qty').enter('2');
+    input('cost').enter('5.00');
+    expect(binding('qty * cost')).toEqual('$10.00');
+    });
+    </script>
+  </head>
+  <body>
+    <div ng-controller="InvoiceCntl">
+      <b>Invoice:</b>
+      <br>
+      <br>
+      <table>
+       <tr><td>Quantity</td><td>Cost</td></tr>
+       <tr>
+         <td><input type="number" ng-pattern="/\d+/" step="1" min="0" ng-model="qty" required ></td>
+         <td><input type="number" ng-model="cost" required ></td>
+       </tr>
+      </table>
+      <hr>
+      <b>Total:</b> {{qty * cost | currency}}
+    </div>
+  </body>
+</html>
