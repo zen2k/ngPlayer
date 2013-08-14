@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html ng-app>
+<head>
+<script src="http://code.angularjs.org/1.0.6/angular.min.js"></script>
+<script type="text/javascript">
+function DeviceCtlr($scope){
+$scope.devices = [{name:"MyPc",id:54073232,type:"PC",os:"Windows 7",installed_apps:"396",available_apps:"398,399,402,403,404"},
+	{name:"MyLaptop",id:54613432,type:"Laptop",os:"Windows 8",installed_apps:"401",available_apps:"398,399,402,403,404"},
+	{name:"MyTabby",id:54313342,type:"Tablet",os:"Android 4.1",installed_apps:"403",available_apps:"396,398,399,402,404"},
+	{name:"MyPhone",id:54213142,type:"Phone",os:"Android 4.2",installed_apps:"399",available_apps:"396,398,402,403,404"}
+];
+}
+</script>
+<style type="text/css">
+table td{
+	border: 1px solid #ddd;
+	border-collapse: collapse; border-spacing: 0;
+}
+</style>
+</head>
+<body>
+    <div ng-controller='DeviceCtlr'>
+    	<label>Search</label>
+    	<input type='text' ng-model="type" />
+    	<table>
+    		<thead>
+    			<th>Device Name</th>
+    			<th>Device Type</th>
+    			<th>Device OS</th>
+    		</thead>
+    		<tr ng-repeat="device in devices | filter:type">
+    			<td>{{device.name | orderBy: device.id}}</td>
+    			<td>{{device.type}}</td>
+    			<td>{{device.os}}</td>
+    		</tr>
+    	</table>
+    </div>
+</body>
+</html>
